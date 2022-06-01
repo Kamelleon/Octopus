@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view()),
     path('register/', register_view),
+    path('', register_view, name='main-screen'),
 ]

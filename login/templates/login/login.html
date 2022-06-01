@@ -8,8 +8,15 @@
 </head>
 <body>
 <h1>Log in</h1>
-<form method="POST">
+<form method="POST" action="{% url 'main-screen'%}">
     {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <br>
+    <input type="submit" name="submit-login-form" value="Login">
 
 </form>
 </body>
