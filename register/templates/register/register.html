@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1>Register</h1>
+<p>Already have an account? <a href="{% url "login" %}">Log in</a></p>
 <form method="POST">
     {% csrf_token %}
     {% for field in form %}
