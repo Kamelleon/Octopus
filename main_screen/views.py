@@ -57,6 +57,13 @@ def camera_update_view(request, camera_id):
     }
     return render(request, "main_screen/camera_update.html", context=context)
 
+
 @login_required(login_url='login')
-def camera_delete_view(request):
-    return
+def camera_delete_view(request, camera_id):
+    obj = get_object_or_404(Camera, id=camera_id)
+
+    if request.method == "POST":
+        obj.delete()
+        return redirect("main-screen")
+
+    return redirect('main-screen')

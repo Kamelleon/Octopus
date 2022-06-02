@@ -10,7 +10,12 @@
     <p>{{ camera_object.codec}}</p>
     <p>{{ camera_object.user}}</p>
     <p>{{ camera_object.substream}}</p>
-    <a href="{% url 'camera-update' camera_object.id %}">Update</a>
-    <a href="{% url 'camera-delete' camera_object.id %}">Delete</a>
+    <form method="GET" action="{% url 'camera-update' camera_object.id %}">
+        <input type="submit" value="Update">
+    </form>
+    <form onsubmit="return confirm('Do you really want to delete this camera object?');" method="POST" action="{% url 'camera-delete' camera_object.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
 </body>
 </html>
