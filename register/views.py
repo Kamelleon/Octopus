@@ -5,7 +5,6 @@ from .forms import CreateUserForm
 from django.views import View
 from django.contrib import messages
 
-
 def register_view(request):
     form = CreateUserForm()
 

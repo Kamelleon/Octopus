@@ -17,10 +17,10 @@
     <input type="password" name="password">
     <br>
     <input type="submit" name="submit-login-form" value="Login">
-    <p>No account? <a href="{% url "register" %}">Sign up</a></p>
     {% for message in messages %}
         <p>{{ message }}</p>
     {% endfor %}
+<p>No account? <a href="{% url "register" %}">Sign up</a></p>
 
 </form>
 </body>

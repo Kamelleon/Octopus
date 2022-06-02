@@ -5,6 +5,8 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
+
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -20,6 +22,7 @@ def login_view(request):
 
     context = {}
     return render(request, "login/login.html", context=context)
+
 
 def logout_view(request):
     logout(request)

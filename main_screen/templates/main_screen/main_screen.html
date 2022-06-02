@@ -8,5 +8,12 @@
     <h1>Main screen</h1>
     <p>Hi, {{ request.user }}</p>
     <a href="{% url 'logout' %}">Logout</a>
+    <form action="{% url 'add-camera' %}">
+        <input type="submit" value="Add camera" />
+    </form>
+    <br>
+    {% for camera in camera_objects %}
+        <p><a href="{% url 'camera-details' camera.id %}">{{ camera.id }} - {{ camera.name }} ({{ camera.ip }})</a></p>
+    {% endfor %}
 </body>
 </html>
