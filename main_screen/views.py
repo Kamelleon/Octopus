@@ -29,7 +29,7 @@ def add_camera_view(request):
     }
     return render(request, "main_screen/add_camera.html", context=context)
 
-
+@login_required(login_url='login')
 def camera_details_view(request, camera_id):
     context = {
         "camera_object": get_object_or_404(Camera.objects.all(), id=camera_id)
