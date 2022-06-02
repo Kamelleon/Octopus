@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="submit-update-form" value="Save">
+</form>
+<script>
+    document.getElementById('id_password').type = 'password';
+</script>
+</body>
+</html>

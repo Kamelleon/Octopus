@@ -10,6 +10,7 @@
     <p>{{ camera_object.codec}}</p>
     <p>{{ camera_object.user}}</p>
     <p>{{ camera_object.substream}}</p>
-
+    <a href="{% url 'camera-update' camera_object.id %}">Update</a>
+    <a href="{% url 'camera-delete' camera_object.id %}">Delete</a>
 </body>
 </html>
