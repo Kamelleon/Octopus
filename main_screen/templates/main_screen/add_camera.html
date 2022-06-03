@@ -5,10 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="submit-add-camera-form" value="Add">
-</form>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit-add-camera-form" value="Add">
+    </form>
+    <script>
+        document.getElementById('id_password').type = 'password';
+    </script>
 </body>
 </html>

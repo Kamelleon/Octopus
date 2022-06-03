@@ -13,7 +13,22 @@
     </form>
     <br>
     {% for camera in camera_objects %}
-        <p><a href="{% url 'camera-details' camera.id %}">{{ camera.id }} - {{ camera.name }} ({{ camera.ip }})</a></p>
+        <a href="{% url 'camera-details' camera.id %}"><div id="loading{{ forloop.counter }}">Connecting to a {{ camera.ip }}...</div></a>
+        <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port %}" alt='live-stream'>
+        <div id="new_camera{{ forloop.counter }}"></div>
+        <script>
+        const myInterval{{ forloop.counter }} = setInterval(myTimer{{ forloop.counter }}, 30000);
+
+        function loadImage{{ forloop.counter }}() {
+            document.getElementById("loading{{ forloop.counter }}").remove();
+        }
+
+        function myTimer{{ forloop.counter }}() {
+          document.getElementById("loading{{ forloop.counter }}").innerHTML = "{{ camera.name }} not responding";
+          clearInterval(myInterval{{ forloop.counter }});
+        }
+        </script>
+{#        <p><a href="{% url 'camera-details' camera.id %}">{{ forloop.counter }} - {{ camera.name }} ({{ camera.ip }})</a></p>#}
     {% endfor %}
 </body>
 </html>

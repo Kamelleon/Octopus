@@ -5,4 +5,4 @@ class CameraForm(ModelForm):
     # password = CharField(widget=PasswordInput())
     class Meta:
         model = Camera
-        fields = ["name","ip","codec","user","password","substream"]
+        fields = ["name","ip", "port", "codec","user","password","substream"]

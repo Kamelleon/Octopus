@@ -9,6 +9,7 @@ CODECS =(
 class Camera(models.Model):
     name = models.CharField(max_length=30)
     ip = models.GenericIPAddressField(protocol="IPv4")
+    port = models.IntegerField()
     codec = models.CharField(max_length=4, choices=CODECS)
     user = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
