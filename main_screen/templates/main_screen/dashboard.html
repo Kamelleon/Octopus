@@ -10,12 +10,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></div>
 <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></div>
+<hr>
 <div id="container">
-    <div class="module-box">
-        <img src="{% static '/img/camera_icon.png' %}" alt="octpus_logo_black">
-        <p>Cameras view</p>
-    </div>
+    <a href="{% url 'main-screen' %}">
+        <div class="module-box" id="leftmost">
+            <img src="{% static '/img/camera.png' %}" alt="octpus_logo_black">
+            <p>Cameras view</p>
+        </div>
+    </a>
+    <a href="{% url 'add-camera' %}">
+        <div class="module-box" id="add-camera">
+            <img src="{% static '/img/plus.png' %}" alt="octpus_logo_black">
+            <p>Add camera</p>
+        </div>
+    </a>
+        <div class="module-box">
+            <img src="{% static '/img/person.png' %}" alt="octpus_logo_black">
+            <p>Detector</p>
+        </div>
+        <div class="module-box">
+            <img src="{% static '/img/shape.png' %}" alt="octpus_logo_black">
+            <p>Areas</p>
+        </div>
+        <div class="module-box" id="rightmost">
+            <img src="{% static '/img/notification.png' %}" alt="octpus_logo_black">
+            <p>Notifications</p>
+        </div>
 </div>
 </body>
 </html>

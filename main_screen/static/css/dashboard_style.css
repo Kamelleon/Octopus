@@ -5,9 +5,28 @@ background: linear-gradient(313deg, rgba(158,158,158,1) 0%, rgba(247,247,247,1) 
     background-repeat: no-repeat;
     background-attachment: fixed;
     width:100%;
-    height:100%;
+    height: 95vh;
 }
-
+#user-info{
+    font-size: 3vh;
+    margin-right: 0.5vw;
+    margin-left: 0.2vw;
+}
+#logout-button{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#user{
+    float:right;
+    font-size: 2vh;
+    font-family: 'Mulish', sans-serif;
+    margin-right: 1.5vw;
+}
+a, a:hover, a:focus, a:active {
+      text-decoration: underline;
+      color: black;
+    font-size:2.3vh;
+}
 #logo img{
     height: 13vh;
 }
@@ -16,13 +35,50 @@ img{
 max-height:100%;
 }
 #logo{
-    margin-top:3vh;
-    width:25vw;
+    margin-top:5vh;
+    width:22vw;
     margin-left: auto;
     margin-right: auto;
 }
+.module-box img{
+    height:12vh;
+}
 
+#container{
+    margin-top: 17vh;
+    width:73vw;
+    height: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
 .module-box{
-    width:25vw;
-    height:25vh;
+    transition: transform .3s;
+    padding:3.5% 3% 1% 3%;
+    float:left;
+    background-color: transparent;
+    border-radius:12%;
+    width:max-content;
+    border:0.5vh solid black;
+    text-align: center;
+    font-size: 2vh;
+    font-family: 'Mulish', sans-serif;
+    margin-left:4%;
+    cursor: pointer;
+}
+.module-box:hover {
+  transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    background-color: white;
+        outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 20px #9ecaed;
+}
+hr{
+    width:35vw;
+    border: 0.1vh solid gray;
+    background-color: gray;
+}
+#add-camera{
+    padding-left: 3.2%;
+    padding-right: 3.2%;
 }
