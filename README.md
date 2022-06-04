@@ -22,12 +22,12 @@ It is also worth mentioning that not all currently working websites have applied
 # Preview pictures of website
 - Login screen
 
-![](C:\Users\kamil\PycharmProjects\octopus\preview_images\login_screen.png)
+![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/login_screen.png)
 
 - Sign up screen
 
-![](C:\Users\kamil\PycharmProjects\octopus\preview_images\register_screen.png)
+![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/register_screen.png)
 
 - Dashboard
 
-![](C:\Users\kamil\PycharmProjects\octopus\preview_images\main_screen_view.png)
+![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/main_screen_view.png)
