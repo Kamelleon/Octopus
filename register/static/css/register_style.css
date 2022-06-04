@@ -14,17 +14,17 @@ img{
     width:15vw;
 }
 #messages{
+    width:13vw;
     color:red;
+    font-family: 'Mulish', sans-serif;
 }
 #messages p{
-    margin-left:0;
     font-size:1.8vh;
     width:15vw;
     text-decoration: underline;
 }
 p{
     font-size:2vh;
-    margin-left:2.5vw;
     font-family: 'Mulish', sans-serif;
 }
 label{
@@ -54,8 +54,8 @@ input[type=submit]{
     border-radius:0.5vw;
     border: 0.1vw solid gray;
 }
-#login-container{
-    margin-top:30vh;
+#register-container{
+    margin-top:20vh;
     padding-right: 30%;
     padding-left: 43%;
     /*margin-left: auto;*/

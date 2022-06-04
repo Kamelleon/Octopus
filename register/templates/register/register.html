@@ -4,18 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Octopus - Register</title>
+    <link rel="stylesheet" href="{% static '/css/register_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Register</h1>
-<p>Already have an account? <a href="{% url "login" %}">Log in</a></p>
-<form method="POST">
-    {% csrf_token %}
-    {% for field in form %}
-        {{ field.label }} <br>
-        {{ field }}<br>
-    {% endfor %}
-    {{ form.errors }}
-    <input type="submit" name="Create User">
-</form>
+<div id="register-container">
+<img src="{% static '/img/Octopus_logo_black.svg' %}">
+<br>
+<br>
+<br>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <br>
+        {{form.username}}
+        <br>
+        <br>
+        <label for="email">Email:</label>
+        <br>
+        {{ form.email }}
+        <br>
+        <br>
+        <label for="password1">Password:</label>
+        <br>
+        {{ form.password1 }}
+        <br>
+        <br>
+        <label for="password2">Confirm password:</label>
+        <br>
+        {{ form.password2 }}
+        <br>
+        <br>
+        <input type="submit" name="submit-login-form" value="Register">
+        <div id="messages">
+        {% if form.errors %}
+            <ul class="user-msg error">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>
+                      {{ error }}
+                    </li>
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+        <p>Already have an account? <a href="{% url "login" %}">Log in</a></p>
+    </form>
+</div>
+
 </body>
 </html>
