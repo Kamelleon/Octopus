@@ -118,3 +118,8 @@ def camera_delete_view(request, camera_id):
         return redirect("main-screen")
 
     return redirect('main-screen')
+
+
+@login_required(login_url='login')
+def dashboard_view(request):
+    return render(request, "main_screen/dashboard.html", {})
