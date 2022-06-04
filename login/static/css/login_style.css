@@ -1,0 +1,65 @@
+body{
+    margin:0;
+background: rgb(158,158,158);
+background: linear-gradient(313deg, rgba(158,158,158,1) 0%, rgba(247,247,247,1) 50%, rgba(255,255,255,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+a, a:hover, a:focus, a:active {
+      text-decoration: underline;
+      color: gray;
+    font-size:2.3vh;
+}
+img{
+    width:15vw;
+}
+#messages{
+    color:red;
+}
+#messages p{
+    margin-left:0;
+    font-size:1.8vh;
+    text-decoration: underline;
+}
+p{
+    font-size:2vh;
+    margin-left:2.5vw;
+    font-family: 'Mulish', sans-serif;
+}
+label{
+    font-size: 2.2vh;
+    font-family: 'Mulish', sans-serif;
+}
+input[type=submit]{
+    width:7vw;
+    height:5vh;
+    font-size:2vh;
+    margin-left:4vw;
+    background-color: white;
+    border-radius:0.5vw;
+    border: 0.13vw solid gray;
+    margin-top:1.5vh;
+    cursor:pointer;
+    font-family: 'Mulish', sans-serif;
+
+
+}
+.input-text{
+    width:14.7vw;
+    height:3vh;
+    font-size:2vh;
+    margin-top:0.8vh;
+    background-color: white;
+    border-radius:0.5vw;
+    border: 0.1vw solid gray;
+}
+#login-container{
+    margin-top:30vh;
+    padding-right: 30%;
+    padding-left: 43%;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+}
+#user-label{
+    text-align: left;
+}

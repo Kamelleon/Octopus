@@ -5,23 +5,39 @@
     <meta charset="UTF-8">
     <title>Octopus - Log in</title>
     <link rel="stylesheet" href="{% static '/css/login_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Log in</h1>
-<form method="POST">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" name="username">
+<div id="login-container">
+<img src="{% static '/img/Octopus_logo_black.svg' %}">
+<br>
+<br>
+<br>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <br>
+        <input class="input-text" type="text" name="username">
+        <br>
+        <br>
+        <br>
+        <label for="password">Password:</label>
+        <br>
+        <input class="input-text" type="password" name="password">
+        <br>
+        <br>
+        <input type="submit" name="submit-login-form" value="Login">
+        <div id="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
     <br>
-    <label for="password">Password:</label>
-    <input type="password" name="password">
     <br>
-    <input type="submit" name="submit-login-form" value="Login">
-    {% for message in messages %}
-        <p>{{ message }}</p>
-    {% endfor %}
-<p>No account? <a href="{% url "register" %}">Sign up</a></p>
-
-</form>
+        <p>No account? <a href="{% url "register" %}">Sign up</a></p>
+    </form>
+</div>
 </body>
 </html>

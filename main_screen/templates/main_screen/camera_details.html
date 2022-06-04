@@ -7,9 +7,10 @@
 <body>
     <p>{{ camera_object.name }}</p>
     <p>{{ camera_object.ip }}</p>
-    <p>{{ camera_object.codec}}</p>
-    <p>{{ camera_object.user}}</p>
-    <p>{{ camera_object.substream}}</p>
+    <p>{{ camera_object.port }}</p>
+    <p>{{ camera_object.codec }}</p>
+    <p>{{ camera_object.user }}</p>
+    <p>{{ camera_object.substream }}</p>
     <form method="GET" action="{% url 'camera-update' camera_object.id %}">
         <input type="submit" value="Update">
     </form>
