@@ -10,54 +10,53 @@ import threading
 
 
 
-class VideoCamera:
-    def __init__(self, rtsp_ip, port):
-        self.rtsp_ip = rtsp_ip
-        print(rtsp_ip)
-        print(port)
-        print(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264")
-        self.video = cv2.VideoCapture(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264")
-        (self.grabbed, self.frame) = self.video.read()
-        threading.Thread(target=self.update, args=()).start()
-
-    def __del__(self):
-        self.video.release()
-
-    def get_frame(self):
-        global streaming_http_response
-        try:
-            image = self.frame
-            _, jpeg = cv2.imencode('.jpg', image)
-            return jpeg.tobytes()
-        except:
-            streaming_http_response.close()
-
-    def update(self):
-        while True:
-            (self.grabbed, self.frame) = self.video.read()
+# class VideoCamera:
+#     def __init__(self, rtsp_ip, port):
+#         self.rtsp_ip = rtsp_ip
+#         print(rtsp_ip)
+#         print(port)
+#         print(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264")
+#         self.video = cv2.VideoCapture(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264")
+#         (self.grabbed, self.frame) = self.video.read()
+#         threading.Thread(target=self.update, args=()).start()
+#
+#     def __del__(self):
+#         self.video.release()
+#
+#     def get_frame(self):
+#         global streaming_http_response
+#         try:
+#             image = self.frame
+#             _, jpeg = cv2.imencode('.jpg', image)
+#             return jpeg.tobytes()
+#         except:
+#             streaming_http_response.close()
+#
+#     def update(self):
+#         while True:
+#             (self.grabbed, self.frame) = self.video.read()
 
 
 def gen(camera):
-    global streaming_http_response
+    video = cv2.VideoCapture()
+    video.open(camera)
+    print("streaming live feed of ", camera)
     while True:
-        try:
-            frame = camera.get_frame()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-        except:
-            streaming_http_response.close()
+        success, frame = video.read()
+        if not success:
             break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-streaming_http_response = StreamingHttpResponse()
+
+
 @gzip.gzip_page
 def rtsp_stream(request, rtsp_ip, port):
-    print(rtsp_ip)
-    print(port)
-    global streaming_http_response
-    streaming_http_response = StreamingHttpResponse()
     try:
-        cam = VideoCamera(rtsp_ip, port)
-        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
+        return StreamingHttpResponse(gen(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264"), content_type="multipart/x-mixed-replace;boundary=frame")
     except:  # This is bad! replace it with proper handling
         pass
 

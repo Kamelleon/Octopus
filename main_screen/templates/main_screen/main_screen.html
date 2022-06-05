@@ -10,26 +10,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></div>
-    <a href="{% url 'logout' %}">Logout</a>
-    <br>
-    {% for camera in camera_objects %}
-        <a href="{% url 'camera-details' camera.id %}"><div id="loading{{ forloop.counter }}">Connecting to a {{ camera.ip }}...</div></a>
-        <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port %}" alt='live-stream'>
-        <div id="new_camera{{ forloop.counter }}"></div>
-        <script>
-        const myInterval{{ forloop.counter }} = setInterval(myTimer{{ forloop.counter }}, 30000);
+    <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
+    <hr>
+    <div id="container">
+        <div id="sidebar">
+        <p id="sidebar-header">Available cameras</p>
+        <hr>
+        <div id="sidebar-content">
+            {% for camera in camera_objects %}
+                <a href="{% url 'camera-details' camera.id %}"><div class="camera-object"><span style="margin-left:2%">{{ forloop.counter }}. {{ camera.name }} ({{ camera.ip }})</span></div></a>
+                <hr>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="preview-screen">
+        {% for camera in camera_objects %}
+            <div class="preview-container">
+{#                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port %}" alt='live-stream'> #}
+                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="http://{{ camera.ip }}:{{ camera.port }}/video/mjpeg">
+                <div id="loading{{ forloop.counter }}">Connecting to a  {{ camera.name }}</div>
+                <div id="camera-name{{ forloop.counter }}"> {{ camera.name }} ({{ camera.ip }})</div>
+                <script>
+                    document.getElementById("camera-name{{ forloop.counter }}").style.visibility = "hidden";
+                const myInterval{{ forloop.counter }} = setInterval(myTimer{{ forloop.counter }}, 3000);
 
-        function loadImage{{ forloop.counter }}() {
-            document.getElementById("loading{{ forloop.counter }}").remove();
-        }
+                function loadImage{{ forloop.counter }}() {
+                    document.getElementById("loading{{ forloop.counter }}").remove();
+                    document.getElementById("camera-name{{ forloop.counter }}").style.visibility = "visible";
+                    document.getElementById("camera-name{{ forloop.counter }}").style.position = "absolute";
+                    document.getElementById("camera-name{{ forloop.counter }}").style.fontSize = "1.5vh";
+                    document.getElementById("camera-name{{ forloop.counter }}").style.backgroundColor = "black";
+                    document.getElementById("camera-name{{ forloop.counter }}").style.color = "white";
+                    clearInterval(myInterval{{ forloop.counter }});
 
-        function myTimer{{ forloop.counter }}() {
-          document.getElementById("loading{{ forloop.counter }}").innerHTML = "{{ camera.name }} not responding";
-          clearInterval(myInterval{{ forloop.counter }});
-        }
-        </script>
-{#        <p><a href="{% url 'camera-details' camera.id %}">{{ forloop.counter }} - {{ camera.name }} ({{ camera.ip }})</a></p>#}
-    {% endfor %}
+                }
+
+                function myTimer{{ forloop.counter }}() {
+                    document.getElementById("camera{{ forloop.counter }}").remove();
+                  document.getElementById("loading{{ forloop.counter }}").innerHTML = "The following camera is not responding:<p>{{ camera.name }} - {{ camera.ip }}</p>";
+                  clearInterval(myInterval{{ forloop.counter }});
+                }
+                </script>
+            </div>
+    {#        <p><a href="{% url 'camera-details' camera.id %}">{{ forloop.counter }} - {{ camera.name }} ({{ camera.ip }})</a></p>#}
+        {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
