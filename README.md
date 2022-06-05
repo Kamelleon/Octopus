@@ -31,3 +31,7 @@ It is also worth mentioning that not all currently working websites have applied
 - Dashboard
 
 ![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/main_screen_view.png)
+
+- "Cameras view"
+
+![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/cameras_view_screen.png)
