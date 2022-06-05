@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
+    <div id="logo"><a href="{% url 'dashboard' %}"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></a><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
     <hr>
     <div id="container">
         <div id="sidebar">
@@ -41,6 +41,8 @@
                     document.getElementById("camera-name{{ forloop.counter }}").style.fontSize = "1.5vh";
                     document.getElementById("camera-name{{ forloop.counter }}").style.backgroundColor = "black";
                     document.getElementById("camera-name{{ forloop.counter }}").style.color = "white";
+                    document.getElementById("camera-name{{ forloop.counter }}").style.width = "26.5vw";
+                    document.getElementById("camera-name{{ forloop.counter }}").style.padding = "0.4%";
                     clearInterval(myInterval{{ forloop.counter }});
 
                 }
