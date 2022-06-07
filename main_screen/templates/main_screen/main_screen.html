@@ -29,27 +29,27 @@
 {#                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port %}" alt='live-stream'> #}
                 <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="http://{{ camera.ip }}:{{ camera.port }}/video/mjpeg">
                 <div id="loading{{ forloop.counter }}">Connecting to a  {{ camera.name }}</div>
-                <div id="camera-name{{ forloop.counter }}"> {{ camera.name }} ({{ camera.ip }})</div>
+{#                <div id="camera-name{{ forloop.counter }}"> {{ camera.name }} ({{ camera.ip }})</div>#}
                 <script>
-                    document.getElementById("camera-name{{ forloop.counter }}").style.visibility = "hidden";
+                document.getElementById("loading{{ forloop.counter }}").style.padding = "26%";
                 const myInterval{{ forloop.counter }} = setInterval(myTimer{{ forloop.counter }}, 3000);
 
                 function loadImage{{ forloop.counter }}() {
                     document.getElementById("loading{{ forloop.counter }}").remove();
-                    document.getElementById("camera-name{{ forloop.counter }}").style.visibility = "visible";
-                    document.getElementById("camera-name{{ forloop.counter }}").style.position = "absolute";
-                    document.getElementById("camera-name{{ forloop.counter }}").style.fontSize = "1.5vh";
-                    document.getElementById("camera-name{{ forloop.counter }}").style.backgroundColor = "black";
-                    document.getElementById("camera-name{{ forloop.counter }}").style.color = "white";
-                    document.getElementById("camera-name{{ forloop.counter }}").style.width = "26.5vw";
-                    document.getElementById("camera-name{{ forloop.counter }}").style.padding = "0.4%";
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.visibility = "visible";#}
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.position = "absolute";#}
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.fontSize = "1.5vh";#}
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.backgroundColor = "black";#}
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.color = "white";#}
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.width = "26.5vw";#}
+                    {#document.getElementById("camera-name{{ forloop.counter }}").style.padding = "0.4%";#}
                     clearInterval(myInterval{{ forloop.counter }});
 
                 }
 
                 function myTimer{{ forloop.counter }}() {
                     document.getElementById("camera{{ forloop.counter }}").remove();
-                  document.getElementById("loading{{ forloop.counter }}").innerHTML = "The following camera is not responding:<p>{{ camera.name }} - {{ camera.ip }}</p>";
+                  document.getElementById("loading{{ forloop.counter }}").innerHTML = "The following camera is not responding:<p>{{ forloop.counter }}. {{ camera.name }} ({{ camera.ip }})</p>";
                   clearInterval(myInterval{{ forloop.counter }});
                 }
                 </script>
