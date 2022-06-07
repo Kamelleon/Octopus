@@ -35,3 +35,7 @@ It is also worth mentioning that not all currently working websites have applied
 - "Cameras view"
 
 ![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/cameras_view_screen.png)
+
+- "Add camera"
+
+![](https://github.com/Kamelleon/Octopus/blob/main/preview_images/add_camera_view.png)
