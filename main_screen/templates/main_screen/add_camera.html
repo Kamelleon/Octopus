@@ -1,15 +1,76 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Octopus - Add camera</title>
+    <link rel="stylesheet" href="{% static '/css/add_camera_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div id="add-camera-container">
+    <div id="header">
+        <a href="{% url 'dashboard' %}"><img src="{% static '/img/camera_icon.png' %}"></a>
+        <p>ADD CAMERA</p>
+        <hr>
+    </div>
+<br>
+<br>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="name">Camera name:</label>
+        <br>
+        {{form.name}}
+        <br>
+        <br>
+        <label for="ip">IP:</label>
+        <br>
+        {{ form.ip }}
+        <br>
+        <br>
+        <label for="port">Port:</label>
+        <br>
+        {{ form.port }}
+        <br>
+        <br>
+        <label for="codec">Codec</label>
+        <br>
+        {{ form.codec }}
+        <br>
+        <br>
+        <label for="user">User</label>
+        <br>
+        {{ form.user }}
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <br>
+        {{ form.password }}
+        <br>
+        <br>
+        <label for="substream">Use substream:</label>
+        <br>
+        {{ form.substream }}
+        <br>
+        <br>
+        <div id="messages">
+        {% if form.errors %}
+            <ul class="add-camera-msg error">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>
+                      {{ error }}
+                    </li>
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
         <input type="submit" name="submit-add-camera-form" value="Add">
     </form>
+</div>
     <script>
         document.getElementById('id_password').type = 'password';
     </script>
