@@ -18,7 +18,7 @@ from django.urls import path
 
 from login.views import login_view, logout_view
 from register.views import register_view
-from main_screen.views import main_screen_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream, dashboard_view
+from main_screen.views import main_screen_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream, dashboard_view, detector_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('main_screen/', main_screen_view, name='main-screen'),
     path('', dashboard_view, name='dashboard'),
     path('add_camera/', add_camera_view, name='add-camera'),
+    path('detector/', detector_view, name='detector'),
     path('camera_details/<int:camera_id>', camera_details_view, name='camera-details'),
     path('camera_update/<int:camera_id>', camera_update_view, name='camera-update'),
     path('camera_delete/<int:camera_id>', camera_delete_view, name='camera-delete'),

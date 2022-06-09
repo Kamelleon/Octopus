@@ -88,6 +88,7 @@ hr:last-child {
 .preview-screen{
     width:81.5%;
     float:left;
+    border-left: 0.2vh solid white;
 }
 
 .preview-container{
