@@ -122,7 +122,3 @@ def camera_delete_view(request, camera_id):
 @login_required(login_url='login')
 def dashboard_view(request):
     return render(request, "main_screen/dashboard.html", {})
-
-@login_required(login_url='login')
-def detector_view(request):
-    return render(request, "main_screen/detector.html", {})

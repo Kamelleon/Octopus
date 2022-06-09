@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'register',
-    'main_screen'
+    'main_screen',
+    'detector',
+    'directory'
 ]
 
 MIDDLEWARE = [
@@ -125,6 +127,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+DIRECTORY_DIRECTORY = os.getcwd()
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_AGE = 3600

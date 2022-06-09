@@ -1,0 +1,41 @@
+html{
+    margin:0;
+}
+body{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color:black;
+background: rgb(158,158,158);
+background: linear-gradient(313deg, rgba(158,158,158,1) 0%, rgba(247,247,247,1) 50%, rgba(255,255,255,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+p{
+    margin-top:10vh;
+    margin-bottom: 2vh;
+    font-size: 5vh;
+}
+hr{
+    width:25%;
+}
+path{
+    fill:black;
+}
+#myCalendarWrapper {
+    width: 40vw;
+    padding: 2em 4em;
+    position: relative;
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media screen and (max-width: 1200px){
+    #myCalendarWrapper {
+        width:80vw;
+        padding: 5em 4em;
+        position: relative;
+        font-size: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

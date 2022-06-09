@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from login.views import login_view, logout_view
 from register.views import register_view
-from main_screen.views import main_screen_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream, dashboard_view, detector_view
+from main_screen.views import main_screen_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream, dashboard_view
+from detector.views import detector_calendar_view, detector_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +28,10 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('main_screen/', main_screen_view, name='main-screen'),
     path('', dashboard_view, name='dashboard'),
+    path('files/', include('directory.urls')),
     path('add_camera/', add_camera_view, name='add-camera'),
     path('detector/', detector_view, name='detector'),
+    path('detector/calendar/', detector_calendar_view, name='detector-calendar'),
     path('camera_details/<int:camera_id>', camera_details_view, name='camera-details'),
     path('camera_update/<int:camera_id>', camera_update_view, name='camera-update'),
     path('camera_delete/<int:camera_id>', camera_delete_view, name='camera-delete'),
