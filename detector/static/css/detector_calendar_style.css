@@ -11,9 +11,9 @@ background: linear-gradient(313deg, rgba(158,158,158,1) 0%, rgba(247,247,247,1) 
     background-attachment: fixed;
 }
 p{
-    margin-top:10vh;
+    margin-top:6vh;
     margin-bottom: 2vh;
-    font-size: 5vh;
+    font-size: 4vh;
 }
 hr{
     width:25%;

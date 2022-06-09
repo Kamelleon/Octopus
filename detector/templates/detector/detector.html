@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Octopus - Dashboard</title>
+    <title>Octopus - Detector</title>
     <link rel="stylesheet" href="{% static '/css/detector_style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +20,10 @@
             <p>Check detections</p>
         </div>
     </a>
-    <a href="">
+    <a href="{% url 'configurator' %}">
         <div class="module-box" id="settings">
             <img src="{% static '/img/settings.png' %}" alt="octpus_logo_black">
-            <p>Settings</p>
+            <p>Configure</p>
         </div>
     </a>
 </div>

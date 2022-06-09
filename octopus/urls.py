@@ -20,6 +20,7 @@ from login.views import login_view, logout_view
 from register.views import register_view
 from main_screen.views import main_screen_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream, dashboard_view
 from detector.views import detector_calendar_view, detector_view
+from configurator.views import configurator_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('main_screen/', main_screen_view, name='main-screen'),
     path('', dashboard_view, name='dashboard'),
+    path('configurator/', configurator_view, name='configurator'),
     path('files/', include('directory.urls')),
     path('add_camera/', add_camera_view, name='add-camera'),
     path('detector/', detector_view, name='detector'),

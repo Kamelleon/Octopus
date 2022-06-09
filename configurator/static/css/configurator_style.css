@@ -1,0 +1,112 @@
+body{
+    margin:0;
+    font-family: 'Mulish', sans-serif;
+    height:100%;
+    width:100%;
+    background-color: black;
+}
+#container{
+    color:white;
+    background-color: black;
+    height:100%;
+}
+#logo{
+    background-color: white;
+    width:auto;
+    padding:0.5%;
+}
+#logo img{
+    width: 10vw;
+    margin-left: 1vw;
+    margin-top: 1vh;
+}
+#user{
+    float:right;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: black;
+    font-size:2.3vh;
+}
+#user-info{
+    font-size: 3vh;
+    margin-right: 0.5vw;
+    margin-left: 0.2vw;
+}
+#logout-button{
+    text-decoration: underline;
+    cursor: pointer;
+}
+hr{
+    border: 0.1vh solid gray;
+    background-color: gray;
+    margin: 0;
+}
+#user{
+    float:right;
+    font-size: 2vh;
+    font-family: 'Mulish', sans-serif;
+    margin-right: 1.5vw;
+}
+#sidebar{
+    width:18%;
+    border-right: 0.3vh solid black;
+    border-bottom:0.3vh solid black;
+    float:left;
+}
+
+#sidebar-header{
+    margin:0;
+    text-align: center;
+    font-family: 'Mulish', sans-serif;
+    padding:5%;
+    background-color: black;
+    color:white;
+    font-size: 2vh;
+}
+.camera-object{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 2vh;
+    color:white;
+     transition: background-color .2s;
+}
+.camera-object:hover{
+    background-color: white;
+    color:black;
+}
+
+hr:last-child {
+  display:none;
+}
+#container{
+    width:100%;
+    float:left;
+}
+.preview-screen{
+    width:81.5%;
+    float:left;
+    border-left: 0.2vh solid white;
+}
+
+.preview-container{
+    width:32.33%;
+    height:35vh;
+    float:left;
+    background-color: black;
+    color:white;
+    text-align: center;
+}
+.preview-container img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.bottom-left {
+  position: absolute;
+    font-size: 1.5vh;
+    background-color: black;
+    color:white;
+}
