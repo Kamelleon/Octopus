@@ -10,6 +10,8 @@ from django.shortcuts import render
 def detector_view(request):
     return render(request, "detector/detector.html", {})
 
+
+@login_required(login_url='login')
 def detector_calendar_view(request):
     directories_with_dates = []
     dirs_list = os.listdir(os.getcwd())

@@ -122,3 +122,9 @@ def camera_delete_view(request, camera_id):
 @login_required(login_url='login')
 def dashboard_view(request):
     return render(request, "main_screen/dashboard.html", {})
+
+
+def start_detector_system():
+    from detector.detector_system import detector
+    detector_thread = threading.Thread(target=detector.run)
+    detector_thread.start()
