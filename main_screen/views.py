@@ -27,8 +27,8 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # or yolov5n - yolov5x6
 
 
 class VideoCamera:
-    def __init__(self, rtsp_ip):
-        self.cap = cv2.VideoCapture(f"rtsp://192.168.0.104:8080/video/h264")
+    def __init__(self, rtsp_ip, port, suffix):
+        self.cap = cv2.VideoCapture(f"rtsp://{rtsp_ip}:{port}{suffix}")
         self.q = queue.Queue()
         t = threading.Thread(target=self._reader)
         t.daemon = True
@@ -67,23 +67,21 @@ def gen(camera):
         result = model(frame)
         rendered_image = _render_results(result)
         ret, frame = cv2.imencode('.jpg', rendered_image)
-        frame = frame.tobytes()
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + frame.tobytes() + b'\r\n\r\n')
 
 
 def _render_results(results):
     try:
         results.render()
-
         return results.imgs[0]
     except:
         print(traceback.print_exc())
 
 
 @gzip.gzip_page
-def rtsp_stream(request, rtsp_ip, port):
-    return StreamingHttpResponse(gen(VideoCamera(rtsp_ip)),
+def rtsp_stream(request, rtsp_ip, port, suffix):
+    return StreamingHttpResponse(gen(VideoCamera(rtsp_ip, port, suffix)),
                                  content_type='multipart/x-mixed-replace; boundary=frame')
 
 

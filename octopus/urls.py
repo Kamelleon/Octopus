@@ -37,5 +37,5 @@ urlpatterns = [
     path('camera_details/<int:camera_id>', camera_details_view, name='camera-details'),
     path('camera_update/<int:camera_id>', camera_update_view, name='camera-update'),
     path('camera_delete/<int:camera_id>', camera_delete_view, name='camera-delete'),
-    path('rtsp_stream/<str:rtsp_ip>/<int:port>', rtsp_stream, name='rtsp-stream'),
+    path('rtsp_stream/<str:rtsp_ip>/<int:port>/<path:suffix>', rtsp_stream, name='rtsp-stream'),
 ]
