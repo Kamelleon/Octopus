@@ -1,3 +1,7 @@
+import os
+import traceback
+
+from PIL import Image
 from django.http import StreamingHttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -7,58 +11,80 @@ from .forms import CameraForm
 from .models import Camera
 import cv2
 import threading
+from django.views.decorators import gzip
+from django.http import StreamingHttpResponse
+import cv2
+import threading
+import torch
+import cv2, queue, threading, time
+
+# bufferless VideoCapture
+# Model
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # or yolov5n - yolov5x6, custom
 
 
+# Images
 
-# class VideoCamera:
-#     def __init__(self, rtsp_ip, port):
-#         self.rtsp_ip = rtsp_ip
-#         print(rtsp_ip)
-#         print(port)
-#         print(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264")
-#         self.video = cv2.VideoCapture(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264")
-#         (self.grabbed, self.frame) = self.video.read()
-#         threading.Thread(target=self.update, args=()).start()
-#
-#     def __del__(self):
-#         self.video.release()
-#
-#     def get_frame(self):
-#         global streaming_http_response
-#         try:
-#             image = self.frame
-#             _, jpeg = cv2.imencode('.jpg', image)
-#             return jpeg.tobytes()
-#         except:
-#             streaming_http_response.close()
-#
-#     def update(self):
-#         while True:
-#             (self.grabbed, self.frame) = self.video.read()
+
+class VideoCamera:
+    def __init__(self, rtsp_ip):
+        self.cap = cv2.VideoCapture(f"rtsp://192.168.0.104:8080/video/h264")
+        self.q = queue.Queue()
+        t = threading.Thread(target=self._reader)
+        t.daemon = True
+        t.start()
+
+    def __del__(self):
+        cv2.destroyAllWindows()
+
+    # read frames as soon as they are available, keeping only most recent one
+    def _reader(self):
+        while True:
+            ret, frame = self.cap.read()
+            if not ret:
+                break
+            if not self.q.empty():
+                try:
+                    self.q.get_nowait()  # discard previous (unprocessed) frame
+                except queue.Empty:
+                    pass
+            # frame = cv2.resize(frame, (640, 480))
+            self.q.put(frame)
+
+    def read(self):
+        return self.q.get()
+
+    # def get_frame(self):
+    #     success, imgNp = self.url.read()
+    #     resize = cv2.resize(imgNp, (640, 480))
+    #     ret, jpeg = cv2.imencode('.jpg', resize)
+    #     return jpeg.tobytes()
 
 
 def gen(camera):
-    video = cv2.VideoCapture()
-    video.open(camera)
-    print("streaming live feed of ", camera)
     while True:
-        success, frame = video.read()
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        frame = camera.read()
+        result = model(frame)
+        rendered_image = _render_results(result)
+        ret, frame = cv2.imencode('.jpg', rendered_image)
+        frame = frame.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
+
+def _render_results(results):
+    try:
+        results.render()
+
+        return results.imgs[0]
+    except:
+        print(traceback.print_exc())
 
 
 @gzip.gzip_page
 def rtsp_stream(request, rtsp_ip, port):
-    try:
-        return StreamingHttpResponse(gen(f"rtsp://{rtsp_ip}"+":"+f"{port}/video/h264"), content_type="multipart/x-mixed-replace;boundary=frame")
-    except:  # This is bad! replace it with proper handling
-        pass
+    return StreamingHttpResponse(gen(VideoCamera(rtsp_ip)),
+                                 content_type='multipart/x-mixed-replace; boundary=frame')
 
 
 @login_required(login_url='login')

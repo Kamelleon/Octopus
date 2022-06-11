@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'main_screen',
     'detector',
     'directory',
-    'configurator'
+    'configurator',
 ]
 
 MIDDLEWARE = [

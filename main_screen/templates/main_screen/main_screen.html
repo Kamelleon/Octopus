@@ -26,8 +26,8 @@
         <div class="preview-screen">
         {% for camera in camera_objects %}
             <div class="preview-container">
-{#                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port %}" alt='live-stream'> #}
-                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="http://{{ camera.ip }}:{{ camera.port }}/video/mjpeg">
+                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port %}" alt='live-stream'>
+{#                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="http://{{ camera.ip }}:{{ camera.port }}/video/mjpeg">#}
                 <div id="loading{{ forloop.counter }}">Connecting to a  {{ camera.name }}</div>
 {#                <div id="camera-name{{ forloop.counter }}"> {{ camera.name }} ({{ camera.ip }})</div>#}
                 <script>

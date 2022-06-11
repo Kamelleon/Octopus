@@ -13,7 +13,7 @@ import warnings
 from sys import platform
 import pymysql
 import threading
-from .class_selector import ClassSelector
+from class_selector import ClassSelector
 logging.basicConfig(filename='detector_logger.txt',
                     filemode='a',
                     format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
