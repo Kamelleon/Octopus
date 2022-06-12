@@ -9,10 +9,6 @@ import time
 import torch
 import cv2
 from pathlib import Path
-import warnings
-from sys import platform
-import pymysql
-import threading
 from class_selector import ClassSelector
 logging.basicConfig(filename='detector_logger.txt',
                     filemode='a',

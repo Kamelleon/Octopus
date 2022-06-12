@@ -14,24 +14,28 @@
 <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></div>
 <hr>
 <div id="container">
+
     <a href="{% url 'main-screen' %}">
         <div class="module-box" id="leftmost">
             <img src="{% static '/img/camera.png' %}" alt="octpus_logo_black">
             <p>Cameras view</p>
         </div>
     </a>
+
     <a href="{% url 'add-camera' %}">
         <div class="module-box" id="add-camera">
             <img src="{% static '/img/plus.png' %}" alt="octpus_logo_black">
             <p>Add camera</p>
         </div>
     </a>
-    <a href="{% url 'detector' %}">
+
+    <a href="{% url 'detector-categories' %}">
         <div class="module-box">
             <img src="{% static '/img/person.png' %}" alt="octpus_logo_black">
             <p>Detector</p>
         </div>
     </a>
+
         <div class="module-box">
             <img src="{% static '/img/shape.png' %}" alt="octpus_logo_black">
             <p>Areas</p>

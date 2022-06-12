@@ -3,11 +3,23 @@ import os
 import re
 
 from django.contrib.auth.decorators import login_required
+from django.http import StreamingHttpResponse
 from django.shortcuts import render
+from django.views.decorators import gzip
+
+from detector.live_preview import generate_live_detector_preview
+from main_screen.views import VideoCamera
 
 
 @login_required(login_url='login')
-def detector_view(request):
+@gzip.gzip_page
+def detector_live_preview(request, rtsp_ip, port, suffix):
+    return StreamingHttpResponse(generate_live_detector_preview(VideoCamera(rtsp_ip, port, suffix)),
+                                 content_type='multipart/x-mixed-replace; boundary=frame')
+
+
+@login_required(login_url='login')
+def detector_categories_view(request):
     return render(request, "detector/detector.html", {})
 
 
