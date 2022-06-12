@@ -18,38 +18,41 @@ class VideoCamera:
         t.daemon = True
         t.start()
 
-    # def __del__(self):
-    #     print("deleting")
-    #     self.cap.release()
-    #     # cv2.destroyAllWindows()
-    #
-    # def _reader(self):
-    #     while True:
-    #         ret, frame = self.cap.read()
-    #         if not ret:
-    #             print("No ret, releasing...")
-    #             self.cap.release()
-    #             break
-    #         if not self.q.empty():
-    #             try:
-    #                 self.q.get_nowait()
-    #             except queue.Empty:
-    #                 pass
-    #         self.q.put(frame)
-    #
-    # def read(self):
-    #     return self.q.get()
+    def __del__(self):
+        print("deleting")
+        self.cap.release()
+        # cv2.destroyAllWindows()
+
+    def _reader(self):
+        while True:
+            ret, frame = self.cap.read()
+            if not ret:
+                print("No ret, releasing...")
+                self.cap.release()
+                break
+            if not self.q.empty():
+                try:
+                    self.q.get_nowait()
+                except queue.Empty:
+                    pass
+            self.q.put(frame)
+
+    def read(self):
+        return self.q.get()
 
     def preprocess(self, frame):
         ret, frame = cv2.imencode('.jpg', frame)
         return frame
 
+client = None
 
-def gen():
-    client = rtsp.Client(rtsp_server_uri = 'rtsp://192.168.0.103:8080/video/h264')
-    time.sleep(0.2)
+def gen(rtsp_ip, port, suffix):
+    global client
+    client = rtsp.Client(rtsp_server_uri = f'rtsp://{rtsp_ip}:{port}{suffix}')
+    time.sleep(0.5)
     while client.isOpened():
         _image = client.read(raw=True)
+        time.sleep(0.1)
         ret, frame = cv2.imencode('.jpg', _image)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame.tobytes() + b'\r\n\r\n')
@@ -59,7 +62,7 @@ def gen():
 @gzip.gzip_page
 def rtsp_stream(request, rtsp_ip, port, suffix):
     print("Getting stream")
-    return StreamingHttpResponse(gen(),
+    return StreamingHttpResponse(gen(rtsp_ip,port,suffix),
                                  content_type='multipart/x-mixed-replace; boundary=frame')
 
 
