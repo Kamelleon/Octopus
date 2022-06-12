@@ -20,7 +20,7 @@ def detector_live_preview(request, rtsp_ip, port, suffix):
 
 @login_required(login_url='login')
 def detector_categories_view(request):
-    return render(request, "detector/detector.html", {})
+    return render(request, "detector/detector_categories.html", {})
 
 
 @login_required(login_url='login')

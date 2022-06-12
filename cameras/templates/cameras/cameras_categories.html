@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Octopus - Dashboard</title>
-    <link rel="stylesheet" href="{% static '/css/dashboard_style.css' %}">
+    <title>Octopus - Cameras</title>
+    <link rel="stylesheet" href="{% static 'css/main_screen_style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
@@ -14,36 +14,24 @@
 <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></div>
 <hr>
 <div id="container">
-
-    <a href="{% url 'cameras-view' %}">
-        <div class="module-box" id="leftmost">
+    <a href="{% url 'cameras-preview' %}">
+        <div class="module-box" id="detected-objects">
             <img src="{% static '/img/camera.png' %}" alt="octpus_logo_black">
-            <p>Cameras view</p>
+            <p>Preview</p>
         </div>
     </a>
-
     <a href="{% url 'add-camera' %}">
         <div class="module-box" id="add-camera">
             <img src="{% static '/img/plus.png' %}" alt="octpus_logo_black">
             <p>Add camera</p>
         </div>
     </a>
-
-    <a href="{% url 'detector-categories' %}">
-        <div class="module-box">
-            <img src="{% static '/img/person.png' %}" alt="octpus_logo_black">
-            <p>Detector</p>
+    <a href="{% url 'configurator' %}">
+        <div class="module-box" id="settings">
+            <img src="{% static '/img/settings.png' %}" alt="octpus_logo_black">
+            <p>Configurator</p>
         </div>
     </a>
-
-        <div class="module-box">
-            <img src="{% static '/img/shape.png' %}" alt="octpus_logo_black">
-            <p>Areas</p>
-        </div>
-        <div class="module-box" id="rightmost">
-            <img src="{% static '/img/notification.png' %}" alt="octpus_logo_black">
-            <p>Notifications</p>
-        </div>
 </div>
 </body>
 </html>

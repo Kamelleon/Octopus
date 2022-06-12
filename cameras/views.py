@@ -50,12 +50,17 @@ def rtsp_stream(request, rtsp_ip, port, suffix):
 
 
 @login_required(login_url='login')
-def cameras_view(request):
+def cameras_categories_view(request):
+    return render(request,"cameras/cameras_categories.html",{})
+
+
+@login_required(login_url='login')
+def cameras_preview_view(request):
     camera_objects = Camera.objects.all()
     context = {
         "camera_objects": camera_objects
     }
-    return render(request, "cameras/cameras_view.html", context=context)
+    return render(request, "cameras/cameras_preview.html", context=context)
 
 
 @login_required(login_url='login')

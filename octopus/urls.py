@@ -19,7 +19,7 @@ from django.urls import path, include
 from login.views import login_view, logout_view
 from register.views import register_view
 from main_screen.views import dashboard_view
-from cameras.views import cameras_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream
+from cameras.views import cameras_preview_view, add_camera_view, camera_details_view, camera_update_view, camera_delete_view, rtsp_stream, cameras_categories_view
 from detector.views import detector_calendar_view, detector_categories_view
 from configurator.views import configurator_view
 
@@ -28,11 +28,12 @@ urlpatterns = [
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),
     path('register/', register_view, name='register'),
-    path('main_screen/', cameras_view, name='cameras-view'),
+    path('cameras/preview', cameras_preview_view, name='cameras-preview'),
+    path('cameras/', cameras_categories_view, name='cameras-categories'),
     path('', dashboard_view, name='dashboard'),
     path('configurator/', configurator_view, name='configurator'),
     path('files/', include('directory.urls')),
-    path('add_camera/', add_camera_view, name='add-camera'),
+    path('cameras/add_camera/', add_camera_view, name='add-camera'),
     path('detector/', detector_categories_view, name='detector-categories'),
     path('detector/calendar/', detector_calendar_view, name='detector-calendar'),
     path('camera_details/<int:camera_id>', camera_details_view, name='camera-details'),
