@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'detector',
     'directory',
     'configurator',
+    'cameras'
 ]
 
 MIDDLEWARE = [
