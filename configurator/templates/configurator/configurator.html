@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="logo"><a href="{% url 'dashboard' %}"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></a><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
+    <div id="logo"><a href="{% url 'main-screen' %}"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></a><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
     <hr>
     <div id="container">
         <div id="sidebar">

@@ -4,12 +4,31 @@ import re
 
 from django.contrib.auth.decorators import login_required
 from django.http import StreamingHttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators import gzip
 
+from cameras.models import Camera
 from detector.live_preview import generate_live_detector_preview
 from cameras.views import VideoCamera
 
+
+@login_required(login_url='login')
+def detector_specific_preview(request, camera_id):
+    camera_objects = Camera.objects.all()
+    context = {
+        "camera_objects": camera_objects,
+        "selected_camera": get_object_or_404(Camera.objects.all(), id=camera_id)
+    }
+    print(context)
+    return render(request, "detector/detector_specific_preview.html", context=context)
+
+@login_required(login_url='login')
+def detector_preview_view(request):
+    camera_objects = Camera.objects.all()
+    context = {
+        "camera_objects": camera_objects
+    }
+    return render(request, "detector/detector_preview.html", context=context)
 
 @login_required(login_url='login')
 @gzip.gzip_page

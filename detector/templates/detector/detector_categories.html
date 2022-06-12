@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Octopus - Detector</title>
-    <link rel="stylesheet" href="{% static '/css/detector_style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/main_screen_style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
@@ -14,16 +14,22 @@
 <div id="logo"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></div>
 <hr>
 <div id="container">
-    <a href="{% url 'detector-calendar' %}">
-        <div class="module-box" id="detected-objects">
+    <a href="{% url 'detector-preview' %}">
+        <div class="module-box">
             <img src="{% static '/img/person.png' %}" alt="octpus_logo_black">
-            <p>Check detections</p>
+            <p>Detector live preview</p>
+        </div>
+    </a>
+    <a href="{% url 'detector-calendar' %}">
+        <div class="module-box">
+            <img src="{% static '/img/calendar.png' %}" alt="octpus_logo_black">
+            <p>Detection calendar</p>
         </div>
     </a>
     <a href="{% url 'configurator' %}">
-        <div class="module-box" id="settings">
+        <div class="module-box">
             <img src="{% static '/img/settings.png' %}" alt="octpus_logo_black">
-            <p>Configurator</p>
+            <p>Configure detector</p>
         </div>
     </a>
 </div>

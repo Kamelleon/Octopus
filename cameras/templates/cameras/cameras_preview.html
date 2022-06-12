@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="logo"><a href="{% url 'dashboard' %}"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></a><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
+    <div id="logo"><a href="{% url 'main-screen' %}"><img src="{% static '/img/Octopus_logo_black.svg' %}" alt="octpus_logo_black"></a><span id="user">Logged in as {{ request.user }} <span id="user-info">|</span><span id="logout-button"><a href="{% url 'logout' %}">Logout</a></span></span></div>
     <hr>
     <div id="container">
         <div id="sidebar">
@@ -29,7 +29,7 @@
                 <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="{% url 'rtsp-stream' rtsp_ip=camera.ip port=camera.port suffix=camera.suffix %}" alt='live-stream'>
 {#                <img id="camera{{ forloop.counter }}" onload="loadImage{{ forloop.counter }}()" src="http://{{ camera.ip }}:{{ camera.port }}/video/mjpeg">#}
                 <div id="loading{{ forloop.counter }}">Connecting to a  {{ camera.name }}</div>
-{#                <div id="camera-name{{ forloop.counter }}"> {{ camera.name }} ({{ camera.ip }})</div>#}
+                <div id="camera-name{{ forloop.counter }}"> {{ camera.name }} ({{ camera.ip }})</div>
                 <script>
                 document.getElementById("loading{{ forloop.counter }}").style.padding = "26%";
                 const myInterval{{ forloop.counter }} = setInterval(myTimer{{ forloop.counter }}, 3000);

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Octopus - Add camera</title>
-    <link rel="stylesheet" href="{% static 'cameras/../../static/css/add_camera_style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/add_camera_style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 <body>
 <div id="add-camera-container">
     <div id="header">
-        <a href="{% url 'dashboard' %}"><img src="{% static '/img/camera_icon.png' %}"></a>
+        <a href="{% url 'main-screen' %}"><img src="{% static '/img/camera_icon.png' %}"></a>
         <p>ADD CAMERA</p>
         <hr>
     </div>
@@ -33,6 +33,11 @@
         <label for="port">Port:</label>
         <br>
         {{ form.port }}
+        <br>
+        <br>
+        <label for="codec">Codec:</label>
+        <br>
+        {{ form.codec }}
         <br>
         <br>
         <label for="user">User</label>

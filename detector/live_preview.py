@@ -2,6 +2,8 @@ import traceback
 import cv2
 import torch
 
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+
 def _render_results(results):
     try:
         results.render()
@@ -10,7 +12,6 @@ def _render_results(results):
         print(traceback.print_exc())
 
 def generate_live_detector_preview(camera):
-    model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
     while True:
         frame = camera.read()
         result = model(frame)

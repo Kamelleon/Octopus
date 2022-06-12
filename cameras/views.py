@@ -70,7 +70,7 @@ def add_camera_view(request):
         form = CameraForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("cameras-view")
+            return redirect("cameras-preview")
 
     context = {
         "form": form
@@ -107,7 +107,7 @@ def camera_delete_view(request, camera_id):
 
     if request.method == "POST":
         obj.delete()
-        return redirect("cameras-view")
+        return redirect("cameras-preview")
 
-    return redirect('cameras-view')
+    return redirect('cameras-preview')
 

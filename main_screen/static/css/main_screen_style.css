@@ -23,7 +23,7 @@ background: linear-gradient(313deg, rgba(158,158,158,1) 0%, rgba(247,247,247,1) 
     margin-right: 1.5vw;
 }
 a, a:hover, a:focus, a:active {
-      text-decoration: underline;
+      text-decoration: none;
       color: black;
     font-size:2.3vh;
 }
@@ -46,24 +46,26 @@ max-height:100%;
 
 #container{
     margin-top: 17vh;
-    width:69vw;
+    width:100%;
     height: 30vh;
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+    /*position: relative;*/
+    text-align: center;
 }
 .module-box{
     transition: transform .3s;
-    padding:3.5% 3% 1% 3%;
-    float:left;
+    padding:3% 3% 1% 3%;
+    /*float:left;*/
     background-color: transparent;
+    display: inline-block;
     border-radius:12%;
-    width:max-content;
+    width:7%;
     border:0.5vh solid black;
     text-align: center;
     font-size: 2vh;
     font-family: 'Mulish', sans-serif;
-    margin-left:4%;
+    margin: 2%;
     cursor: pointer;
 }
 .module-box:hover {
@@ -77,8 +79,4 @@ hr{
     width:35vw;
     border: 0.1vh solid gray;
     background-color: gray;
-}
-#add-camera{
-    padding-left: 3.2%;
-    padding-right: 3.2%;
 }

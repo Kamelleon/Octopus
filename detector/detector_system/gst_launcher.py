@@ -2,7 +2,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "octopus.settings")
 import django
 django.setup()
-from main_screen.models import Camera
+from cameras.models import Camera
 
 all_cameras = Camera.objects.all()
 all_cameras = all_cameras.values()
@@ -12,8 +12,8 @@ for camera_object in all_cameras:
     name = camera_object['name']
     user = camera_object['user']
     password = camera_object['password']
-    use_substream = camera_object['substream']
-    print(ip,port,name,user,password, use_substream)
+    suffix = camera_object['suffix']
+    print(ip,port,name,user,password, suffix)
 
 
 
