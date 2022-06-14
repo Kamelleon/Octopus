@@ -9,7 +9,8 @@ from django.views.decorators import gzip
 
 from cameras.models import Camera
 from detector.live_preview import generate_live_detector_preview
-from cameras.views import VideoCamera
+# from cameras.views import VideoCamera
+# from camera_capturer.rtsp_capturer import CameraCapturer
 
 
 @login_required(login_url='login')
@@ -30,10 +31,10 @@ def detector_preview_view(request):
     }
     return render(request, "detector/detector_preview.html", context=context)
 
-@login_required(login_url='login')
 @gzip.gzip_page
 def detector_live_preview(request, rtsp_ip, port, suffix):
-    return StreamingHttpResponse(generate_live_detector_preview(VideoCamera(rtsp_ip, port, suffix)),
+    camera_capturer.close_client_if_opened()
+    return StreamingHttpResponse(camera_capturer.gen(rtsp_ip, port, suffix),
                                  content_type='multipart/x-mixed-replace; boundary=frame')
 
 
