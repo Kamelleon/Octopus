@@ -20,42 +20,8 @@ class StoppableThread(threading.Thread):
 
     def stopped(self):
         return self._stop_event.is_set()
-# class StoppableThread(threading.Thread):
-#     """Thread class with a stop() method. The thread itself has to check
-#     regularly for the stopped() condition."""
-#
-#     def __init__(self,  *args, **kwargs):
-#         super(StoppableThread, self).__init__(*args, **kwargs)
-#         self._stop_event = threading.Event()
-#
-#     def stop(self):
-#         self._stop_event.set()
-#
-#     def stopped(self):
-#         return self._stop_event.is_set()
 
 
-# class CameraCapturer:
-#     def __init__(self):
-#         self.client = None
-#
-#     def gen(self, rtsp_ip, port, suffix, additional_function=None):
-#         print("Opening client connection")
-#         self.client = rtsp.Client(rtsp_server_uri=f'rtsp://{rtsp_ip}:{port}{suffix}',verbose=True)
-#         print("Client opened")
-#         time.sleep(0.5)
-#         while self.client.isOpened():
-#             print("Client opened")
-#             _image = self.client.read(raw=True)
-#             print("Frame has been read")
-#             if additional_function is not None:
-#                 additional_function()
-#             time.sleep(0.1)
-#             ret, frame = cv2.imencode('.jpg', _image)
-#             yield (b'--frame\r\n'
-#                    b'Content-Type: image/jpeg\r\n\r\n' + frame.tobytes() + b'\r\n\r\n')
-#         else:
-#             print("Client closed")
 from imutils.video import VideoStream
 
 
